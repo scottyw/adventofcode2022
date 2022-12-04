@@ -61,6 +61,16 @@ func FileLinesToStringSlice(filePath string) []string {
 	return strs
 }
 
+// FileLinesTo2DStringSlice reads the lines of a file into a 2D slice of strings
+func FileLinesTo2DStringSlice(filePath string) [][]string {
+	var strs [][]string
+	chunks := strings.Split(string(FileToBytes(filePath)), "\n\n")
+	for _, chunk := range chunks {
+		strs = append(strs, strings.Split(chunk, "\n"))
+	}
+	return strs
+}
+
 // FileLinesToIntSlice reads the lines of a file into a slice of ints
 func FileLinesToIntSlice(filePath string) []int {
 	f, err := os.Open(filePath)
